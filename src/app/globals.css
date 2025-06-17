@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -20,7 +22,122 @@
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
+  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  min-width: 1200px;
+  overflow-x: auto;
+  margin: 0;
+  padding: 0;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .font-helvetica {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .container-padding {
+    @apply px-[126px];
+  }
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 响应式布局容器 */
+.responsive-container {
+  @apply max-w-[1920px] mx-auto relative;
+  min-width: 1200px;
+  padding: 0 126px;
+}
+
+/* 响应式字体大小调整 */
+@media (max-width: 1024px) {
+  .text-\[100px\] {
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-\[100px\] {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 640px) {
+  .text-\[100px\] {
+    font-size: 48px;
+  }
+}
+
+/* Section过渡效果 */
+.section-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.section-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+.section-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+/* 禁用默认滚动条但保持滚动功能 */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* 慢速旋转动画 */
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slow-spin {
+  animation: slow-spin 60s linear infinite;
 }
